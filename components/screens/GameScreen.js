@@ -1,9 +1,9 @@
 import { View, StyleSheet } from "react-native";
 
 function GameScreen() {
-  return <View style={style}></View>;
+  return <View style={styles}></View>;
 }
 
 export default GameScreen;
 
-const style = StyleSheet.create({});
+const styles = StyleSheet.create({});

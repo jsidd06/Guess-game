@@ -1,9 +1,9 @@
 import { View, StyleSheet } from "react-native";
 
 function GameOver() {
-  return <View style={style}></View>;
+  return <View style={styles}></View>;
 }
 
 export default GameOver;
 
-const style = StyleSheet.create({});
+const styles = StyleSheet.create({});
