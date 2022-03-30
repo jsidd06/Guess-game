@@ -4,7 +4,7 @@ import PrimaryButton from "../PrimaryButton"
 function StartGame () {
     return (
         <View style={styles.inputContainer}>
-            <TextInput />
+            <TextInput style={styles.numberInput} keyboardType="numeric"  maxLength={2} />
             <PrimaryButton >Reset</PrimaryButton>
             <PrimaryButton >Confirm</PrimaryButton>
         </View>
@@ -26,4 +26,15 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
   },
+  numberInput:{
+      height: 50,
+        width: 50,
+        fontSize:32,
+        borderBottomColor: "#ddb52f",
+        borderBottomWidth: 2,
+        textAlign: "center",
+        color: "#ddb52f",
+        fontWeight: "bold",
+        marginVertical: 8,
+  }
 });
