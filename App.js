@@ -27,8 +27,9 @@ export default function App() {
     setGameRoundIsOver(false);
   }
 
-  const gameOverHandler = () => {
+  const gameOverHandler = (roundIsOver) => {
     setGameRoundIsOver(true);
+    setRoundIsOver(roundIsOver);
   }
 
   const startNewGameHandler = () => {

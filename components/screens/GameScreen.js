@@ -32,7 +32,7 @@ function GameScreen({ selectedNumber, isGameOver }) {
 
   useEffect(() => {
     if(userGuess === selectedNumber){
-      isGameOver();
+      isGameOver(roundGuess.length);
     }
   }, [userGuess, isGameOver, selectedNumber]);
 
@@ -91,7 +91,7 @@ function GameScreen({ selectedNumber, isGameOver }) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         {/* {roundGuess.map(round =>
           <Text key={round}>{round}</Text>
         )} */}
@@ -120,4 +120,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
   },
+  listContainer: {
+    flex: 1,
+    padding: 16,
+  }
 });
