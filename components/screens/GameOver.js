@@ -3,7 +3,7 @@ import Title from "../Title";
 import Colors from "../constants/Colors";
 import PrimaryButton from "../PrimaryButton";
 
-function GameOver() {
+function GameOver({roundIsOver,selectedNumber,onStartNewGame}) {
   return (
     <View style={styles.rootScreen}>
       <Title>Game Over!</Title>
@@ -11,9 +11,9 @@ function GameOver() {
         <Image style={styles.image} source={require("../../assets/Images/success.png")} />
       </View>
       <View>
-        <Text style={styles.summaryText}>Your phone needed <Text style={styles.highlightText}>X</Text> rounds to guess the number <Text style={styles.highlightText}>Y</Text>.</Text>
+        <Text style={styles.summaryText}>Your phone needed <Text style={styles.highlightText}>{roundIsOver}</Text> rounds to guess the number <Text style={styles.highlightText}>{selectedNumber}</Text>.</Text>
       </View>
-      <PrimaryButton>Start New Game</PrimaryButton>
+      <PrimaryButton onClick={onStartNewGame}>Start New Game</PrimaryButton>
     </View>
   );
 }
