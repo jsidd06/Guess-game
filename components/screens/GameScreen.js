@@ -1,7 +1,8 @@
-import { View, StyleSheet ,Text} from "react-native";
+import { View, StyleSheet, Text, Alert } from "react-native";
 import NumberContainer from "../Game/NumberContainer";
-import {useState} from "react";
+import { useState } from "react";
 import Title from "../Title";
+import PrimaryButton from "../PrimaryButton";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -13,18 +14,51 @@ function generateRandomBetween(min, max, exclude) {
   }
 }
 
+let minNumBoundary = 1;
+let maxNumBoundary = 100;
 
-function GameScreen({userChoice}) {
-  const initialGuess = generateRandomBetween(1, 100, userChoice);
-const [userGuess,setUserGuess] = useState(initialGuess)
+function GameScreen({ selectedNumber }) {
+  const initialGuess = generateRandomBetween(
+    minNumBoundary,
+    maxNumBoundary,
+    selectedNumber
+  );
+  const [userGuess, setUserGuess] = useState(initialGuess);
 
+  function nextGuessHandler(direction) {
+    if (
+      (direction === "lower" && userGuess < selectedNumber) ||
+      (direction === "greater" && userGuess > selectedNumber)
+    ) {
+      Alert.alert("Don't lie!", "You know that this is wrong...", [
+        { text: "Sorry!", style: "cancel" },
+      ]);
+      return;
+    }
 
+    if (direction === "lower") {
+      maxNumBoundary = userGuess;
+    } else {
+      minNumBoundary = userGuess + 1;
+    }
+    console.log(minNumBoundary, maxNumBoundary);
+    const nextGuess = generateRandomBetween(
+      minNumBoundary,
+      maxNumBoundary,
+      userGuess
+    );
+    setUserGuess(nextGuess);
+  }
   return (
     <View style={styles.screenContainer}>
-      
-        <Title>Opponent's Guess</Title>
+      <Title>Opponent's Guess</Title>
       <NumberContainer>{userGuess}</NumberContainer>
-      {/* GUESS */}
+      <PrimaryButton onClick={nextGuessHandler.bind(this, "lower")}>
+        -
+      </PrimaryButton>
+      <PrimaryButton onClick={nextGuessHandler.bind(this, "greater")}>
+        +
+      </PrimaryButton>
       <View>
         <Text>Higher or Lower?</Text>
         {/* + - */}
