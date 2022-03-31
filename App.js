@@ -1,6 +1,8 @@
 import {useState} from "react"
 import { StyleSheet,ImageBackground,SafeAreaView } from 'react-native';
 import {LinearGradient} from "expo-linear-gradient"
+import AppLoading from "expo-app-loading"
+import {useFonts} from "expo-font"
 import StartGame from './components/screens/StartGame';
 import GameScreen from './components/screens/GameScreen';
 import Colors from "./components/constants/Colors";
@@ -9,6 +11,15 @@ import GameOver from "./components/screens/GameOver";
 export default function App() {
   const [selectedNumber, setSelectedNumber] = useState();
   const [gameRoundIsOver, setGameRoundIsOver] = useState(true);
+
+  const [fontsLoaded] =useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  })
+
+  if(!fontsLoaded){
+    return <AppLoading/>
+  }
 
   const submitHandlerNumber = (pickNumber) => {
     setSelectedNumber(pickNumber);
