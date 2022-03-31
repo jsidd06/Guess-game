@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Alert } from "react-native";
+import { View, StyleSheet, Text, Alert,FlatList } from "react-native";
 import NumberContainer from "../Game/NumberContainer";
 import {Ionicons} from "@expo/vector-icons";
 import { useState, useEffect  } from "react";
@@ -27,6 +27,7 @@ function GameScreen({ selectedNumber, isGameOver }) {
     selectedNumber
   );
   const [userGuess, setUserGuess] = useState(initialGuess);
+  const [roundGuess, setRoundGuess] = useState([initialGuess]);
 
   useEffect(() => {
     if(userGuess === selectedNumber){
@@ -62,6 +63,7 @@ function GameScreen({ selectedNumber, isGameOver }) {
       userGuess
     );
     setUserGuess(nextGuess);
+    setRoundGuess((PrevGuessRound) => [nextGuess, ...PrevGuessRound]);
   }
   return (
     <View style={styles.screenContainer}>
@@ -84,6 +86,11 @@ function GameScreen({ selectedNumber, isGameOver }) {
           </View>
         </View>
       </Card>
+      <View>
+        {/* {roundGuess.map(round =>
+          <Text key={round}>{round}</Text>
+        )} */}
+      </View>
     </View>
   );
 }
