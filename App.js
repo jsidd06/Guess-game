@@ -3,6 +3,7 @@ import { StyleSheet,ImageBackground,SafeAreaView } from 'react-native';
 import {LinearGradient} from "expo-linear-gradient"
 import StartGame from './components/screens/StartGame';
 import GameScreen from './components/screens/GameScreen';
+import Colors from "./components/constants/Colors";
 
 export default function App() {
   const [selectedNumber, setSelectedNumber] = useState();
@@ -19,7 +20,7 @@ export default function App() {
 
 
   return (
-    <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.rootScreen}>
+    <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
       <ImageBackground
         source={require("./assets/Images/background.png")}
         resizeMode="cover"
