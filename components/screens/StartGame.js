@@ -1,7 +1,16 @@
+import { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import PrimaryButton from "../PrimaryButton";
 
 function StartGame() {
+  const [pleaseEnterNum, setPleaseEnterNum] = useState("");
+
+  const submitHandlerPleaseEnterNum = (enterNum) => {
+    setPleaseEnterNum(enterNum);
+  }
+
+  const confirmSubmitHandler = () => {}
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -10,13 +19,15 @@ function StartGame() {
         autoCorrect={false}
         autoCapitalize="none"
         maxLength={2}
+        onChangeText={submitHandlerPleaseEnterNum}
+        value={pleaseEnterNum}
       />
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
           <PrimaryButton>Reset</PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton>Confirm</PrimaryButton>
+          <PrimaryButton onClick={confirmSubmitHandler}>Confirm</PrimaryButton>
         </View>
       </View>
     </View>
