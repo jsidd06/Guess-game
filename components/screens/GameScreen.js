@@ -90,6 +90,10 @@ function GameScreen({ selectedNumber, isGameOver }) {
         {/* {roundGuess.map(round =>
           <Text key={round}>{round}</Text>
         )} */}
+        <FlatList data={roundGuess}
+        keyExtractor={(item) => item}
+        renderItem={(itemData) => <Text style={styles.roundText}>{itemData.item}</Text>}
+         />
       </View>
     </View>
   );
