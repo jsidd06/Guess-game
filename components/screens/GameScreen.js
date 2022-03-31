@@ -19,6 +19,6 @@ export default GameScreen;
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    padding: 10,
+    padding: 24,
   }
 });
