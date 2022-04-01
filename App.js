@@ -7,6 +7,7 @@ import StartGame from './components/screens/StartGame';
 import GameScreen from './components/screens/GameScreen';
 import Colors from "./components/constants/Colors";
 import GameOver from "./components/screens/GameOver";
+import {StatusBar} from "expo-status-bar"
 
 export default function App() {
   const [selectedNumber, setSelectedNumber] = useState();
@@ -48,16 +49,22 @@ export default function App() {
   }
 
   return (
-    <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
-      <ImageBackground
-        source={require("./assets/Images/background.png")}
-        resizeMode="cover"
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImg}
       >
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/Images/background.png")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImg}
+        >
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
