@@ -1,4 +1,4 @@
-import { Text,View,Image, StyleSheet } from "react-native"
+import { Text,View,Image, StyleSheet,Dimensions } from "react-native"
 import Title from "../Title";
 import Colors from "../constants/Colors";
 import PrimaryButton from "../PrimaryButton";
@@ -20,6 +20,8 @@ function GameOver({roundIsOver,selectedNumber,onStartNewGame}) {
 
 export default GameOver;
 
+const deviceWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
@@ -27,27 +29,27 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  containerImage:{
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+  containerImage: {
+    width: deviceWidth < 380 ? 150 : 300,
+    height: deviceWidth < 380 ? 150 : 300,
+    borderRadius: deviceWidth < 75 ? 150 : 300,
     borderWidth: 3,
     borderColor: Colors.primary800,
-    overflow: 'hidden',
+    overflow: "hidden",
     margin: 36,
   },
-  image:{
+  image: {
     width: "100%",
     height: "100%",
   },
-  summaryText:{
+  summaryText: {
     fontFamily: "open-sans",
     fontSize: 24,
     textAlign: "center",
     marginBottom: 24,
   },
-  highlightText:{
+  highlightText: {
     fontFamily: "open-sans-bold",
     color: Colors.primary500,
-  }
+  },
 });
