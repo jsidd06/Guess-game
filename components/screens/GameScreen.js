@@ -59,7 +59,6 @@ function GameScreen({ selectedNumber, isGameOver }) {
     } else {
       minNumBoundary = userGuess + 1;
     }
-    console.log(minNumBoundary, maxNumBoundary);
     const nextGuess = generateRandomBetween(
       minNumBoundary,
       maxNumBoundary,
@@ -138,6 +137,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     alignItems: "center",
+    marginTop: 50,
   },
   instructionText: {
     marginBottom: 10,

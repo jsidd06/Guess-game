@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 50,
   },
   containerImage: {
     // width: deviceWidth < 380 ? 150 : 300,
