@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Alert,FlatList } from "react-native";
+import { View, StyleSheet, Text, Alert,FlatList,useWindowDimensions } from "react-native";
 import NumberContainer from "../Game/NumberContainer";
 import {Ionicons} from "@expo/vector-icons";
 import { useState, useEffect  } from "react";
@@ -29,6 +29,8 @@ function GameScreen({ selectedNumber, isGameOver }) {
   );
   const [userGuess, setUserGuess] = useState(initialGuess);
   const [roundGuess, setRoundGuess] = useState([initialGuess]);
+
+  const { width,height } = useWindowDimensions();
 
   useEffect(() => {
     if(userGuess === selectedNumber){
@@ -69,10 +71,8 @@ function GameScreen({ selectedNumber, isGameOver }) {
 
   const guessRoundListLength = roundGuess.length;
 
-
-  return (
-    <View style={styles.screenContainer}>
-      <Title>Opponent's Guess</Title>
+  let content = (
+    <>
       <NumberContainer>{userGuess}</NumberContainer>
       <Card>
         <InstructionText style={styles.instructionText}>
@@ -91,6 +91,33 @@ function GameScreen({ selectedNumber, isGameOver }) {
           </View>
         </View>
       </Card>
+    </>
+  );
+
+  if(width > 500 ){
+    content = (
+      <>
+        <View style={styles.buttonContainerWide}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onClick={nextGuessHandler.bind(this, "lower")}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{userGuess}</NumberContainer>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onClick={nextGuessHandler.bind(this, "greater")}>
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.screenContainer}>
+      <Title>Opponent's Guess</Title>
+      {content}
       <View style={styles.listContainer}>
         {/* {roundGuess.map(round =>
           <Text key={round}>{round}</Text>
@@ -124,5 +151,9 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     padding: 16,
+  },
+  buttonContainerWide:{
+    flexDirection: "row",
+    alignItems: "center",
   }
 });
